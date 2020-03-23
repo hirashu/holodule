@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">HoloDule</string>
+    <string name="title">本日の配信予定</string>
+
+    <string name="schedule_time">10:00</string>
+    <string name="distributor">宝鐘マリン</string>
+    <string name="broadcast_title">[放送タイトル]内容は未定ペコ</string>
+    <string name="broadcast_status">配信中</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_hololive">全体</string>
+    <string name="hololive">ホロライブ</string>
+    <string name="holostars">ホロスターズ</string>
+</resources>
