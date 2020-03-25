@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
-            android:id="@+id/tvImag"
+            android:id="@+id/tvImg"
             android:layout_width="160dp"
             android:layout_height="90dp"
             tools:background="@drawable/hqdefault_live" />
