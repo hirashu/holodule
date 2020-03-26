@@ -5,17 +5,20 @@ import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.services.youtube.YouTube
 import com.google.api.services.youtube.model.SearchListResponse
+import com.google.gson.Gson
 
-class API_YT_Search() : AsyncTask<String, String, SearchListResponse>() {
+class ApiYTSearch() : AsyncTask<String, String, YTApiSearchReslt>() {
 
-    override fun doInBackground(vararg params: String?): SearchListResponse {
+    override fun doInBackground(vararg params: String?): YTApiSearchReslt? {
 
         val youtube = YouTube.Builder(NetHttpTransport(), JacksonFactory(), null)
             .setApplicationName("youtube-cmdline-search-sample").build()
         //println("YOUTUBE ::: $youtube")
 
         val search = youtube.Search().list("id,snippet").setQ("UC1opHUrw8rvnsadT-iGp7Cg")
-        return search.execute()
+        val ret = search.execute().toString()
+        var gson = Gson()
+        return  gson.fromJson(ret, YTApiSearchReslt::class.java)
     }
 
 }

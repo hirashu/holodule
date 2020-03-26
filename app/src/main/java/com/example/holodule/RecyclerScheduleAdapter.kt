@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerScheduleAdapter (private val context:Context,val items:List<YT_API_SearchReslt.Item>):RecyclerView.Adapter<RecyclerScheduleViewHolder>(){
+class RecyclerScheduleAdapter (private val context:Context,val items:List<YTApiSearchReslt.Item>):RecyclerView.Adapter<RecyclerScheduleViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerScheduleViewHolder {
         //インフレータを設定
         val inflater = LayoutInflater.from(context)

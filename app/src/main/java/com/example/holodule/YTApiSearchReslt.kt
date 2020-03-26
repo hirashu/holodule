@@ -1,7 +1,8 @@
 package com.example.holodule
 
-class YT_API_SearchReslt {
-    lateinit var items: List<Item>
+data class YTApiSearchReslt(
+     var items: List<Item>
+){
     class Item{
         lateinit var id:Id
         lateinit var snippet:Snippet
