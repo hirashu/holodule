@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,9 +27,18 @@ class MainScheduleFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_main_schedule, container, false)
-        //RecyclerViewの設定
+        //APIから値を取得する
+        val searchReslt =ApiYTSearch().execute().get()
+        //RecyclerViewの取得
         val lvSchedule =view.findViewById<RecyclerView>(R.id.lvSchedule)
+        //LinearLayoutManagerオブジェクトの作成
+        val layout = LinearLayoutManager(this.context)
+        //RecyclerViewにレイアウトマネージャーを設定する
+        lvSchedule.layoutManager=layout
+        //アダプタp部ジェクトの作成
+        val adapter =RecyclerScheduleAdapter(this.context,searchReslt)
 
+        lvSchedule.adapter=adapter
         return view
     }
 
