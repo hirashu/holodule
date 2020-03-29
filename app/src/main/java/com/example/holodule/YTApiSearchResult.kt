@@ -7,15 +7,17 @@ class YTApiSearchResult(
         lateinit var id:Id
         lateinit var snippet:Snippet
         lateinit var channelTitle:String
+
     }
     class Id{
-        lateinit var channelId:String
+        var videoId:String =""
     }
     class Snippet{
         lateinit var channelId:String
         /** 放送タイトル **/
         lateinit var title:String
         lateinit var thumbnails:Thumbnails
+        lateinit var publishedAt:String
     }
     class Thumbnails{
         lateinit var default:ThumbnailsImgDef

@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/topLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -33,10 +33,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/topLinearLayout">
 
-        <TextView
-            android:id="@+id/tvImg"
+        <ImageView
+            android:id="@+id/ivImg"
             android:layout_width="160dp"
             android:layout_height="90dp"
             tools:background="@drawable/hqdefault_live" />
