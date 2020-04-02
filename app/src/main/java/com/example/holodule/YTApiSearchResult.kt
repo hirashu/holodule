@@ -1,42 +1,43 @@
 package com.example.holodule
 
 class YTApiSearchResult(
-     var items: List<Item>
+     var items: List<Item>?
 ){
     class Item{
-        lateinit var id:Id
-        lateinit var snippet:Snippet
-        lateinit var channelTitle:String
+        var id:Id? = null
+        var snippet: Snippet? = null
+        var channelTitle:String? = null
 
     }
     class Id{
-        var videoId:String =""
+        var videoId:String? = ""
     }
     class Snippet{
-        lateinit var channelId:String
+        var channelId:String? = null
+
         /** 放送タイトル **/
-        lateinit var title:String
-        lateinit var thumbnails:Thumbnails
-        lateinit var publishedAt:String
+        var title:String? = null
+        var thumbnails:Thumbnails? = null
+        var publishedAt:String? = null
     }
     class Thumbnails{
-        lateinit var default:ThumbnailsImgDef
-        lateinit var medium:ThumbnailsImgMid
-        lateinit var high:ThumbnailsImgHigh
+        var default:ThumbnailsImgDef? = null
+        var medium:ThumbnailsImgMid? = null
+        var high:ThumbnailsImgHigh? = null
     }
 
     class ThumbnailsImgDef {
-        lateinit var url:String
+        var url:String? = null
         var width:Int ?= 120
         var height:Int ?= 90
     }
     class ThumbnailsImgMid {
-        lateinit var url:String
+        var url:String? = null
         var width:Int ?= 320
         var height:Int ?= 180
     }
     class ThumbnailsImgHigh {
-        lateinit var url:String
+        var url:String? = null
         var width:Int ?= 480
         var height:Int ?= 360
     }

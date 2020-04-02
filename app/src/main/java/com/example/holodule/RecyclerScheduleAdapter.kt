@@ -21,7 +21,7 @@ class RecyclerScheduleAdapter (private val context:Context?, private val items:L
         // TODO 値を格納する
         val item = items[position]
 
-        val videoId =item.id?.let { it.videoId }
+        val videoId =item.id?.videoId
 
         item?.snippet?.let {
             val scheduleTime =it.publishedAt
