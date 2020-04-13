@@ -35,7 +35,7 @@ class ApiYTSearch() : AsyncTask<String, String, List<YTApiSearchResult.Item>>() 
     }
 
     //test用API返却値
-    val testString="{\n" +
+    private val testString="{\n" +
             " \"kind\": \"youtube#searchListResponse\",\n" +
             " \"etag\": \"\\\"ksCrgYQhtFrXgbHAhi9Fo5t0C2I/ZQDC-OVWT2lGrPLObszO2wpjZb8\\\"\",\n" +
             " \"nextPageToken\": \"CAUQAA\",\n" +

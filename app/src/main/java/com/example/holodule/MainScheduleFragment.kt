@@ -28,7 +28,7 @@ class MainScheduleFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_main_schedule, container, false)
         //APIから値を取得する
-        val searchReslt =ApiYTSearch().execute().get()
+        val searchResult =ApiYTSearch().execute().get()
         //RecyclerViewの取得
         val lvSchedule =view.findViewById<RecyclerView>(R.id.lvSchedule)
         //LinearLayoutManagerオブジェクトの作成
@@ -36,7 +36,7 @@ class MainScheduleFragment : Fragment() {
         //RecyclerViewにレイアウトマネージャーを設定する
         lvSchedule.layoutManager=layout
         //アダプタp部ジェクトの作成
-        val adapter =RecyclerScheduleAdapter(this.context,searchReslt)
+        val adapter =RecyclerScheduleAdapter(this.context,searchResult)
 
         lvSchedule.adapter=adapter
         return view
