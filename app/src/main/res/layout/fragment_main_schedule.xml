@@ -27,22 +27,42 @@
 
 
                 <Button
-                    android:id="@+id/btAllHololive"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/btAll774inc"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
                     android:layout_height="wrap_content"
-                    android:text="@string/all_hololive" />
+                    android:text="@string/all_774inc" />
 
                 <Button
-                    android:id="@+id/btHololive"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/btAniMare"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="11sp"
                     android:layout_height="wrap_content"
-                    android:text="@string/hololive" />
+                    android:text="@string/aniMare" />
 
                 <Button
-                    android:id="@+id/btHoloStars"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/btHoneyStrap"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
                     android:layout_height="wrap_content"
-                    android:text="@string/holostars" />
+                    android:text="@string/honeyStrap_ry" />
+                <Button
+                    android:id="@+id/btSugarLyric"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="@string/sugarLyric_ry" />
+                <Button
+                    android:id="@+id/btVApArt"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vtuberApArt" />
             </TableRow>
         </LinearLayout>
 

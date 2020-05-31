@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">HoloDule</string>
-    <string name="title">本日の配信予定</string>
+    <string name="title">配信予定</string>
 
     <string name="schedule_time">10:00</string>
     <string name="distributor">宝鐘マリン</string>
@@ -9,7 +9,11 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="all_hololive">全体</string>
-    <string name="hololive">ホロライブ</string>
-    <string name="holostars">ホロスターズ</string>
+    <string name="all_774inc">全体</string>
+    <string name="aniMare">あにまーれ</string>
+    <string name="honeyStrap">ハニーストラップ</string>
+    <string name="honeyStrap_ry">ハニスト</string>
+    <string name="sugarLyric">シュガーリリック</string>
+    <string name="sugarLyric_ry">シュガリリ</string>
+    <string name="vtuberApArt">ブイアパ</string>
 </resources>

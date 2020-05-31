@@ -21,12 +21,6 @@
             android:layout_weight="1"
             tools:text="@string/schedule_time" />
 
-        <TextView
-            android:id="@+id/tvDistributor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:text="@string/distributor" />
     </LinearLayout>
 
     <LinearLayout
@@ -45,6 +39,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDistributor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/distributor" />
 
             <TextView
                 android:id="@+id/tvBroadcastStatus"
