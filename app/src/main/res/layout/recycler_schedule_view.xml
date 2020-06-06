@@ -36,26 +36,46 @@
             tools:background="@drawable/hqdefault_live" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvDistributor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="@string/distributor" />
+            <LinearLayout
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                tools:background="@drawable/ic_test_kazami_kuku" />
+
+                <TextView
+                    android:id="@+id/tvDistributor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    tools:text="@string/distributor" />
+
+            </LinearLayout>
+
+
+            <!-- TODO 削除対象であるが別の表記に変更するか検討する(ひとまず非表示とする) -->
             <TextView
                 android:id="@+id/tvBroadcastStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/broadcast_status" />
+                android:text="@string/broadcast_status"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tvBroadcastTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:lines="2"
                 android:text="@string/broadcast_title" />
 
         </LinearLayout>
