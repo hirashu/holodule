@@ -24,14 +24,14 @@ class RecyclerScheduleAdapter (private val context:Context?, private val items:L
         val videoId =item.id?.videoId
 
         item?.snippet?.let {
-            val scheduleTime =it.publishedAt
+            val scheduleTime =it.publishedAt?.value
             var distributor ="湊あくあ（仮）"
             var imgStr=it.thumbnails?.medium?.url
             var broadcastStatus= "配信中（仮）$videoId"
             var broadcastTitle=it.title
 
             // TODO Viewholderに値を設定する
-            holder.tvScheduleTime.text=scheduleTime
+            holder.tvScheduleTime.text=scheduleTime.toString()
             holder.tvDistributor.text=distributor
             holder.tvBroadcastStatus.text=broadcastStatus
             holder.tvBroadcastTitle.text=broadcastTitle

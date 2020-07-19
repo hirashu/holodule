@@ -9,24 +9,24 @@ import com.google.api.services.youtube.model.SearchListResponse
 import com.google.gson.Gson
 import java.lang.Exception
 
-class ApiYTSearch() : AsyncTask<String, String, List<YTApiSearchResult.Item>>() {
+class ApiSearchVideoList() : AsyncTask<String, String, List<YTApiVideo.Item>>() {
 
     companion object{
         private const val apiKey:String = "AIzaSyCQKLwyW0ZgQd_itFgrVLj68xhCxFcOiO0"
     }
 
-    override fun doInBackground(vararg params: String?): List<YTApiSearchResult.Item>? {
+    override fun doInBackground(vararg params: String?): List<YTApiVideo.Item>? {
 
         val youtube = YouTube.Builder(NetHttpTransport(), JacksonFactory(), null)
             .setApplicationName("youtube-cmdline-search-sample").build()
-        val search = youtube.Search().list("id,snippet").setChannelId("UC1opHUrw8rvnsadT-iGp7Cg")
-        search.key = apiKey
+        val videoSearch = youtube.Videos().list("id").setId("QA-UY6jX5P4")
+        videoSearch.key = apiKey
         var gson = Gson()
         return try {
             /**TODO APIで実装を行う。*/
-            val result = search.execute()
+            val result = videoSearch.execute()
             val jsonTest = gson.toJson(result)
-            val retJson = gson.fromJson(jsonTest, YTApiSearchResult::class.java)
+            val retJson = gson.fromJson(jsonTest, YTApiVideo::class.java)
 
             //テスト用コード
             //var ret =testAPI
@@ -38,7 +38,7 @@ class ApiYTSearch() : AsyncTask<String, String, List<YTApiSearchResult.Item>>() 
         }
     }
 
-    override fun onPostExecute(result: List<YTApiSearchResult.Item>?) {
+    override fun onPostExecute(result: List<YTApiVideo.Item>?) {
         //ここで更新処理をおこなう。
 
     }

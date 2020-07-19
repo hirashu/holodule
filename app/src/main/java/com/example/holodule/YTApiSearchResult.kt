@@ -18,12 +18,16 @@ data class YTApiSearchResult(
         /** 放送タイトル **/
         val title:String? = null
         val thumbnails:Thumbnails? = null
-        val publishedAt:String? = null
+        val publishedAt:PublishedAt? = null
     }
     class Thumbnails{
         val default:ThumbnailsImgDef? = null
         val medium:ThumbnailsImgMid? = null
         val high:ThumbnailsImgHigh? = null
+    }
+
+    class PublishedAt{
+        val value:Long? =null
     }
 
     class ThumbnailsImgDef {
