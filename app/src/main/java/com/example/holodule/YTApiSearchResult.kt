@@ -7,7 +7,6 @@ data class YTApiSearchResult(
         val id:Id? = null
         val snippet: Snippet? = null
         val channelTitle:String? = null
-
     }
     class Id{
         val videoId:String? = ""
@@ -17,8 +16,10 @@ data class YTApiSearchResult(
 
         /** 放送タイトル **/
         val title:String? = null
+        val publishTime:String?=null
         val thumbnails:Thumbnails? = null
         val publishedAt:PublishedAt? = null
+        val liveBroadcastContent:String?=null
     }
     class Thumbnails{
         val default:ThumbnailsImgDef? = null

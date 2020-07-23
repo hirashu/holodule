@@ -1,41 +1,55 @@
 package com.example.holodule
 
 import android.os.AsyncTask
-import androidx.recyclerview.widget.RecyclerView
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
+import com.google.api.client.util.DateTime
 import com.google.api.services.youtube.YouTube
-import com.google.api.services.youtube.model.SearchListResponse
 import com.google.gson.Gson
 import java.lang.Exception
+import java.time.format.DateTimeFormatter
 
 class ApiYTSearch() : AsyncTask<String, String, List<YTApiSearchResult.Item>>() {
 
-    companion object{
-        private const val apiKey:String = "AIzaSyCQKLwyW0ZgQd_itFgrVLj68xhCxFcOiO0"
+    companion object {
+        private const val apiKey: String = "AIzaSyCQKLwyW0ZgQd_itFgrVLj68xhCxFcOiO0"
     }
 
     override fun doInBackground(vararg params: String?): List<YTApiSearchResult.Item>? {
 
+        var gson = Gson()
         val youtube = YouTube.Builder(NetHttpTransport(), JacksonFactory(), null)
             .setApplicationName("youtube-cmdline-search-sample").build()
-        val search = youtube.Search().list("id,snippet").setChannelId("UC1opHUrw8rvnsadT-iGp7Cg")
+        val search = youtube.Search().list("id,snippet")
         search.key = apiKey
-        var gson = Gson()
-        return try {
-            /**TODO APIで実装を行う。*/
-            val result = search.execute()
-            val jsonTest = gson.toJson(result)
-            val retJson = gson.fromJson(jsonTest, YTApiSearchResult::class.java)
+        //取得開始時間の設定
+        search.publishedAfter = DateTime(DateUnit().yesterday())
 
-            //テスト用コード
-            //var ret =testAPI
-            //val retJson = gson.fromJson(ret, YTApiSearchResult::class.java)
-            retJson.items
+        val channelIdList = groupChannelIdList(Group774Inc.ALL)
+        val broadcastList = mutableListOf<YTApiSearchResult.Item>()
 
-        }catch (ex:Exception){
-            null
+        channelIdList.forEach {
+            search.channelId = it
+            try {
+                val result = search.execute()
+                /*TODO ↓↓本来ならMapperを用いて実装する*/
+                val jsonTest = gson.toJson(result)
+                val retJson = gson.fromJson(jsonTest, YTApiSearchResult::class.java)
+
+                //テスト用コード
+                //var ret =testAPI
+                //val retJson = gson.fromJson(ret, YTApiSearchResult::class.java)
+                if (retJson.items != null) {
+                    retJson.items.forEach {
+                        broadcastList.add(it)
+                    }
+                }
+            } catch (ex: Exception) {
+                return broadcastList
+            }
         }
+
+        return broadcastList
     }
 
     override fun onPostExecute(result: List<YTApiSearchResult.Item>?) {
@@ -44,7 +58,7 @@ class ApiYTSearch() : AsyncTask<String, String, List<YTApiSearchResult.Item>>() 
     }
 
     //test用API返却値
-    private val testAPI ="{\n" +
+    private val testAPI = "{\n" +
             "    \"etag\": \"E_1jsMS0LZKvdg9jbymC3DHGLKo\",\n" +
             "    \"items\": [\n" +
             "        {\n" +

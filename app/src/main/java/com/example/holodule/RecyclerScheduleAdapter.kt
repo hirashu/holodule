@@ -1,10 +1,13 @@
 package com.example.holodule
 
 import android.content.Context
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.api.client.util.DateTime
+import java.util.*
 
 class RecyclerScheduleAdapter (private val context:Context?, private val items:List<YTApiSearchResult.Item>):RecyclerView.Adapter<RecyclerScheduleViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerScheduleViewHolder {
@@ -25,13 +28,15 @@ class RecyclerScheduleAdapter (private val context:Context?, private val items:L
 
         item?.snippet?.let {
             val scheduleTime =it.publishedAt?.value
-            var distributor ="湊あくあ（仮）"
+            var distributor = memberName(it.channelId)
             var imgStr=it.thumbnails?.medium?.url
             var broadcastStatus= "配信中（仮）$videoId"
             var broadcastTitle=it.title
 
             // TODO Viewholderに値を設定する
-            holder.tvScheduleTime.text=scheduleTime.toString()
+            val time =DateTime.parseRfc3339(it.publishTime)
+            holder.tvScheduleTime.text=time.toString()
+            //holder.tvScheduleTime.text=scheduleTime.toString()
             holder.tvDistributor.text=distributor
             holder.tvBroadcastStatus.text=broadcastStatus
             holder.tvBroadcastTitle.text=broadcastTitle
