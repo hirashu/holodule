@@ -49,7 +49,9 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                tools:background="@drawable/ic_test_kazami_kuku" />
+                android:visibility="gone"
+                tools:background="@drawable/ic_test_kazami_kuku"
+                tools:visibility="visible"/>
 
                 <TextView
                     android:id="@+id/tvDistributor"
