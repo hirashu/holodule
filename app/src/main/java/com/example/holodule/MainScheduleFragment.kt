@@ -28,9 +28,10 @@ class MainScheduleFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_main_schedule, container, false)
         //今日から公開分の配信情報をAPIから値を取得する
-        val searchResult =ApiYTSearch().execute().get()
+        val searchResult =ApiYTSearch().execute().get()?:return view
+        val videoIdList:List<String> = searchResult.mapNotNull { it.id?.videoId }
         //todo 取得した結果をもとに動画情報を取得する。
-        val searchVideoResult =ApiSearchVideoList().execute().get()
+        val searchVideoResult =ApiSearchVideoList().execute(videoIdList).get()
 
         //RecyclerViewの取得
         val lvSchedule =view.findViewById<RecyclerView>(R.id.lvSchedule)
@@ -39,7 +40,7 @@ class MainScheduleFragment : Fragment() {
         //RecyclerViewにレイアウトマネージャーを設定する
         lvSchedule.layoutManager=layout
         //アダプタプジェクトの作成
-        val adapter =RecyclerScheduleAdapter(this.context,searchResult)
+        val adapter =RecyclerScheduleAdapter(this.context,searchVideoResult)
         //テスト
         lvSchedule.adapter=adapter
         return view

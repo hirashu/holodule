@@ -18,7 +18,7 @@ data class YTApiSearchResult(
         val title:String? = null
         val publishTime:String?=null
         val thumbnails:Thumbnails? = null
-        val publishedAt:PublishedAt? = null
+        val publishedAt:String? = null
         val liveBroadcastContent:String?=null
     }
     class Thumbnails{
