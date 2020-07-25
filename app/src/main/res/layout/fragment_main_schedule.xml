@@ -71,7 +71,8 @@
         android:id="@+id/lvSchedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:background="@drawable/border"/>
 
     </LinearLayout>
 </FrameLayout>

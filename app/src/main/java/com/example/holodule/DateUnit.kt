@@ -1,5 +1,6 @@
 package com.example.holodule
 
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,6 +41,75 @@ class DateUnit{
     /** RFC3339形式のdate-time値を取得する（1970-01-01T00:00:00Z）*/
     fun formRfc3339Date(date: Date):String{
         val sdf = SimpleDateFormat("yyyy-MM-dd kk:mm:ss")
+        return sdf.format(date)
+    }
+
+    /** RFC3339形式のdate-time値をローカル時間に変換する*/
+    @Synchronized
+    @Throws(ParseException::class, IndexOutOfBoundsException::class)
+    fun parseRFC3339Date(dateString: String): Date? {
+        var dateString = dateString
+        var d: Date
+
+        //if there is no time zone, we don't need to do any special parsing.
+        if (dateString.endsWith("Z")) {
+            try {
+                val s = SimpleDateFormat(
+                    "yyyy-MM-dd'T'HH:mm:ss'Z'",
+                    Locale.getDefault()
+                ) //spec for RFC3339 with a 'Z'
+                s.timeZone = TimeZone.getTimeZone("UTC")
+                d = s.parse(dateString)
+            } catch (pe: ParseException) { //try again with optional decimals
+                val s = SimpleDateFormat(
+                    "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'",
+                    Locale.getDefault()
+                ) //spec for RFC3339 with a 'Z' and fractional seconds
+                s.timeZone = TimeZone.getTimeZone("UTC")
+                s.isLenient = true
+                d = s.parse(dateString)
+            }
+            return d
+        }
+
+        //step one, split off the timezone.
+        val firstPart: String
+        var secondPart: String
+        if (dateString.lastIndexOf('+') == -1) {
+            firstPart = dateString.substring(0, dateString.lastIndexOf('-'))
+            secondPart = dateString.substring(dateString.lastIndexOf('-'))
+        } else {
+            firstPart = dateString.substring(0, dateString.lastIndexOf('+'))
+            secondPart = dateString.substring(dateString.lastIndexOf('+'))
+        }
+
+        //step two, remove the colon from the timezone offset
+        secondPart = secondPart.substring(
+            0,
+            secondPart.indexOf(':')
+        ) + secondPart.substring(secondPart.indexOf(':') + 1)
+        dateString = firstPart + secondPart
+        var s = SimpleDateFormat(
+            "yyyy-MM-dd'T'HH:mm:ssZ",
+            Locale.getDefault()
+        ) //spec for RFC3339
+        try {
+            d = s.parse(dateString)
+        } catch (pe: ParseException) { //try again with optional decimals
+            s = SimpleDateFormat(
+                "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ",
+                Locale.getDefault()
+            ) //spec for RFC3339 (with fractional seconds)
+            s.isLenient = true
+            d = s.parse(dateString)
+        }
+        return d
+    }
+
+    /**DateTimeをHH:MM形式に変換する*/
+    fun formHmmDate(date: Date?):String{
+        date?:return ""
+        val sdf = SimpleDateFormat("H:mm")
         return sdf.format(date)
     }
 

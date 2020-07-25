@@ -2,16 +2,20 @@ package com.example.holodule
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class RecyclerScheduleAdapter (private val context:Context?, private val items:List<YTApiVideo.Item>):RecyclerView.Adapter<RecyclerScheduleViewHolder>(){
+class RecyclerScheduleAdapter(
+    private val context: Context?,
+    private val items: List<YTApiVideo.Item>
+) : RecyclerView.Adapter<RecyclerScheduleViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerScheduleViewHolder {
         //インフレータを設定
         val inflater = LayoutInflater.from(context)
         //1行分の画像部品として設定する
-        val view = inflater.inflate(R.layout.recycler_schedule_view,parent,false)
+        val view = inflater.inflate(R.layout.recycler_schedule_view, parent, false)
         //ビューホルダオブジェクトを作成する
         return RecyclerScheduleViewHolder(view)
     }
@@ -20,22 +24,35 @@ class RecyclerScheduleAdapter (private val context:Context?, private val items:L
         // TODO 値を格納する
         val item = items[position]
 
-        val videoId =item.id
+        val videoId = item.id
 
-        holder.tvScheduleTime.text=item.liveStreamingDetails?.scheduledStartTime
+        //TODO前の項目と同じ時間なら
+        if (position != 0) {
+            if (item.liveStreamingDetails?.scheduledStartTime == items[position - 1].liveStreamingDetails?.scheduledStartTime) {
+                holder.tvScheduleTime.visibility = View.INVISIBLE
+            } else {
+                holder.tvScheduleTime.visibility = View.VISIBLE
+                holder.tvScheduleTime.text =
+                    DateUnit().formHmmDate(DateUnit().parseRFC3339Date(item.liveStreamingDetails?.scheduledStartTime!!))
+            }
+        } else {
+            holder.tvScheduleTime.visibility = View.VISIBLE
+            holder.tvScheduleTime.text =
+                DateUnit().formHmmDate(DateUnit().parseRFC3339Date(item.liveStreamingDetails?.scheduledStartTime!!))
+        }
 
         item?.snippet?.let {
             var distributor = memberName(it.channelId)
-            var imgStr=it.thumbnails?.medium?.url
-            var broadcastStatus= "配信中（仮）$videoId"
-            var broadcastTitle=it.title
+            var imgStr = it.thumbnails?.medium?.url
+            var broadcastStatus = "配信中（仮）$videoId"
+            var broadcastTitle = it.title
 
             // TODO Viewholderに値を設定する
-            holder.tvDistributor.text=distributor
-            holder.tvBroadcastStatus.text=broadcastStatus
-            holder.tvBroadcastTitle.text=broadcastTitle
+            holder.tvDistributor.text = distributor
+            holder.tvBroadcastStatus.text = broadcastStatus
+            holder.tvBroadcastTitle.text = broadcastTitle
             //画像を設定
-            if(context!=null) {
+            if (context != null) {
                 Glide.with(context).load(imgStr).into(holder.ivImg)
             }
         }
@@ -45,7 +62,6 @@ class RecyclerScheduleAdapter (private val context:Context?, private val items:L
         //リストデータの件数をリターン
         return items.size
     }
-
 
 
 }
