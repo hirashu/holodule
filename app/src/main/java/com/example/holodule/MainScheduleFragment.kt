@@ -31,6 +31,9 @@ class MainScheduleFragment : Fragment() {
         val searchResult =ApiYTSearch().execute().get()?:return view
         val videoIdList:List<String> = searchResult.mapNotNull { it.id?.videoId }
         //todo 取得した結果をもとに動画情報を取得する。
+        if(videoIdList.isEmpty()){
+            return view
+        }
         val searchVideoResult =ApiSearchVideoList().execute(videoIdList).get()
 
         //RecyclerViewの取得

@@ -28,17 +28,17 @@ class RecyclerScheduleAdapter(
 
         //TODO前の項目と同じ時間なら
         if (position != 0) {
-            if (item.liveStreamingDetails?.scheduledStartTime == items[position - 1].liveStreamingDetails?.scheduledStartTime) {
-                holder.tvScheduleTime.visibility = View.INVISIBLE
+            if (item.liveStreamingDetails?.scheduledStartTime?.value == items[position - 1].liveStreamingDetails?.scheduledStartTime?.value) {
+                holder.tvScheduleTime.visibility = View.GONE
             } else {
                 holder.tvScheduleTime.visibility = View.VISIBLE
                 holder.tvScheduleTime.text =
-                    DateUnit().formHmmDate(DateUnit().parseRFC3339Date(item.liveStreamingDetails?.scheduledStartTime!!))
+                    DateUnit().formHmmDate(item.liveStreamingDetails?.scheduledStartTime?.value) + " ~"
             }
         } else {
             holder.tvScheduleTime.visibility = View.VISIBLE
             holder.tvScheduleTime.text =
-                DateUnit().formHmmDate(DateUnit().parseRFC3339Date(item.liveStreamingDetails?.scheduledStartTime!!))
+                DateUnit().formHmmDate(item.liveStreamingDetails?.scheduledStartTime?.value) + " ~"
         }
 
         item?.snippet?.let {

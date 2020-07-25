@@ -6,7 +6,7 @@ data class YTApiVideo(
     class Item{
         val id:String?=null
         val snippet: Snippet?=null
-        val liveStreamingDetails :LiveStreamingDetails?=null
+        val liveStreamingDetails :LiveStreamingDetail?=null
     }
 
     class Snippet{
@@ -20,7 +20,11 @@ data class YTApiVideo(
     }
 
     /**動画の配信時間のクラス*/
-    class LiveStreamingDetails{
-        val scheduledStartTime :String? =null
+    class LiveStreamingDetail{
+        val scheduledStartTime :TimeValue? =null
+    }
+
+    class TimeValue{
+        val value :Long?=null
     }
 }

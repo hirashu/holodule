@@ -113,4 +113,11 @@ class DateUnit{
         return sdf.format(date)
     }
 
+    fun formHmmDate(dateTime: Long?):String{
+        dateTime?:return ""
+        val date= Date()
+        date.time=dateTime
+        val sdf = SimpleDateFormat("H:mm")
+        return sdf.format(date)
+    }
 }
