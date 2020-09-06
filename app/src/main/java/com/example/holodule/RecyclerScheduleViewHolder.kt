@@ -7,18 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerScheduleViewHolder (itemView: View):RecyclerView.ViewHolder(itemView){
     //画面部品の定義
-    var tvScheduleTime:TextView
-    var tvDistributor:TextView
-    var ivImg:ImageView
-    var tvBroadcastStatus:TextView
-    var tvBroadcastTitle:TextView
-
-    //画面部品に表示に使われるIDを設定する。
-    init{
-        tvScheduleTime=itemView.findViewById(R.id.tvScheduleTime)
-        tvDistributor=itemView.findViewById(R.id.tvDistributor)
-        ivImg=itemView.findViewById(R.id.ivImg)
-        tvBroadcastStatus=itemView.findViewById(R.id.tvBroadcastStatus)
-        tvBroadcastTitle=itemView.findViewById(R.id.tvBroadcastTitle)
-    }
+    var tvScheduleTime:TextView = itemView.findViewById(R.id.tvScheduleTime)
+    var tvDistributor:TextView = itemView.findViewById(R.id.tvDistributor)
+    var ivImg:ImageView = itemView.findViewById(R.id.ivImg)
+    var tvBroadcastStatus:TextView = itemView.findViewById(R.id.tvBroadcastStatus)
+    var tvBroadcastTitle:TextView = itemView.findViewById(R.id.tvBroadcastTitle)
 }

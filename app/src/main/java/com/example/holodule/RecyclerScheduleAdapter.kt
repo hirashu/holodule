@@ -1,11 +1,15 @@
 package com.example.holodule
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+
 
 class RecyclerScheduleAdapter(
     private val context: Context?,
@@ -44,7 +48,7 @@ class RecyclerScheduleAdapter(
         item?.snippet?.let {
             var distributor = memberName(it.channelId)
             var imgStr = it.thumbnails?.medium?.url
-            var broadcastStatus = "配信中（仮）$videoId"
+            var broadcastStatus = "配信中（非表示）$videoId"
             var broadcastTitle = it.title
 
             // TODO Viewholderに値を設定する
@@ -54,6 +58,13 @@ class RecyclerScheduleAdapter(
             //画像を設定
             if (context != null) {
                 Glide.with(context).load(imgStr).into(holder.ivImg)
+
+                holder.ivImg.setOnClickListener {
+                    val uri: Uri = Uri.parse("https://www.youtube.com/watch?v="+item.id)
+                    val i = Intent(Intent.ACTION_VIEW, uri)
+                    // アプリが見つからなければ、ActivityNotFoundException
+                    startActivity(context,i,null)
+                }
             }
         }
     }

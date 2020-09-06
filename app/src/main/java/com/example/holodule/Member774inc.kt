@@ -22,7 +22,6 @@ enum class Member774inc(val group: Group774Inc,val castName:String, val chId: St
     /**Vアパ*/
     ANDO_YUGE(Group774Inc.V_APA,"杏戸ゆげ","UC3EhsuKdEkI99TWZwZgWutg"),
     KISAKI_ANKO(Group774Inc.V_APA,"季咲あんこ","UChXm-xAYPfygrbyLo2yCASQ"),
-    CAMOMI_CAMOMI(Group774Inc.V_APA,"鴨見カモミ","UCL-2thbJ7grC9fmGF4OLuTg"),
     KANADE_KANON(Group774Inc.V_APA,"花奏かのん","UCmqrvfLMws-GLGHQcB5dasg"),
     KOMORI_METO(Group774Inc.V_APA,"小森めと","UCzUNASdzI4PV5SlqtYwAkKQ"),
     FUMA_MAT(Group774Inc.V_APA,"不磨わっと","UCV4EoK6BVNl7wxuxpUvvSWA");
