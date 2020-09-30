@@ -1,7 +1,7 @@
 package com.example.holodule
 
 enum class Member774inc(val group: Group774Inc,val castName:String, val chId: String) {
-    //774incメンバー（所属,ChId）
+    //774incメンバー（所属,名前,ChId）
     /**あにまーれ*/
     INABA_HANERU(Group774Inc.ANIMARE,"因幡はねる","UC0Owc36U9lOyi9Gx9Ic-4qg"),
     SOUYA_ICHIKA(Group774Inc.ANIMARE,"宗谷いちか","UC2kyQhzGOB-JPgcQX9OMgEw"),
